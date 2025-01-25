@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>AI Generated Roadmap Builder</title>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Generated Roadmap Builder</h1>
+        <form id="roadmapForm">
+            <label for="domain">Domain of Interest:</label>
+            <input type="text" id="domain" name="domain" required>
+
+            <label for="year">Year of Study:</label>
+            <input type="number" id="year" name="year" required>
+
+            <label for="coreInterest">Core Interest:</label>
+            <input type="text" id="coreInterest" name="coreInterest" required>
+
+            <label for="github">GitHub Account Link:</label>
+            <input type="url" id="github" name="github" required>
+
+            <button type="submit">Generate Roadmap</button>
+        </form>
+        <div id="roadmapOutput"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+ 

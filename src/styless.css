@@ -1,0 +1,349 @@
+/* General Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  color: #0288d1;
+  line-height: 1.6;
+}
+
+/* Utility Classes */
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin:  auto;
+  padding: 20px;
+  margin-top: 110px;
+}
+
+/* Header with Flexbox */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #007bff;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.profile-info {
+  text-align: left;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #81d4fa;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-icon {
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding-top: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.hidden {
+  left: -250px;
+}
+
+.sidebar.visible {
+  left: 0;
+}
+
+.sidebar-heading {
+  color: #f5f5f5;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 15px 20px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  padding: 20px;
+  position: relative;
+}
+ 
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: #0288d1;
+}
+
+.card-content {
+  margin-top: 15px;
+  transition: 0.3s ease ;
+  transform-origin: center;
+}
+.card-content:hover{
+  transform: scale(1.01);
+  position: relative;
+  z-index: 10;
+}
+
+.view-policies-btn {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.view-policies-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Chatbot */
+.chatbot {
+  position: fixed;
+  top: 5px;
+  right: 10px;
+  width: 250px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 15px 9px;
+  font-size: 15px;
+  
+}
+
+.chatbot-content {
+  display: none;
+  margin-top: 10px;
+}
+
+.chatbot.visible .chatbot-content {
+  display: block;
+}
+
+#chatSearchBar {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  width: 80%;
+  border-radius: 8px;
+}
+
+.close-btn {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.close-btn:hover {
+  color: black;
+}
+.dashboard-table{
+  width: 1179px;
+  text-align: center;
+}
+.thead{
+  font-size: 1.5rem;
+  color: #0288d1;
+}
+td{
+  font-size: 1.5rem;
+  color: #0288d1;
+}
+
+   /* Hamburger menu styling */
+   .hamburger-menu {
+    position: relative;
+    display: inline-block;
+    margin: 20px;
+}
+
+.hamburger-icon {
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.hamburger-icon div {
+    background-color:#007bff;
+    height: 4px;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Dropdown menu styling */
+ /* Hamburger menu container */
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Hamburger icon */
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.hamburger-icon div {
+  height: 4px;
+  background-color:#007bff;
+  border-radius: 2px;
+}
+
+/* Sliding menu */
+.sliding-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;  /* Initially off-screen */
+  background-color: white;
+  width: 250px;
+  height: 100%;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+  transition: left 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;  /* Adds space from the top for the links */
+}
+
+/* Slide-in effect */
+.sliding-menu.active {
+  left: 0;  /* Slide into view */
+}
+
+/* Menu links inside the sliding menu */
+.sliding-menu a {
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect on links */
+.sliding-menu a:hover {
+  background-color:#0288d1;
+  color: white;
+}
+
+/* Remove border from the last link */
+.sliding-menu a:last-child {
+  border-bottom: none;
+}
+
+input{
+
+}
+.suggest-btn{
+  background-color:#007bff;
+  border-radius: 8px;
+  color: white;
+   border: none;
+  height:auto;
+  cursor: pointer;
+}
+.diseaseName{
+  border-radius: 8px;
+  outline:none;
+  color: #0288d1;
+
+}
+.back-btn{
+  width: 80px; 
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+ 

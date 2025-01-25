@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal</title>
+    <link rel="stylesheet" href="../src/styless.css">
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+</head>
+<body>
+    <div class="hamburger-menu">
+        <!-- Hamburger icon -->
+        <div class="hamburger-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <!-- Sliding menu -->
+        <div class="sliding-menu">
+            <button class="back-btn" onclick="toggleMenu()">&#8592; Back</button>
+            <a href="">Home</a>
+            <a href="">Policies</a>
+            <a href="">Report</a>
+            <a href="">Customer Service</a>
+        </div>
+    </div>
+
+    <!-- Existing content -->
+    <div class="chatbot">
+        <h3 id="chatbot-toggle" onclick="toggleChatbot()">Medicine Suggestion Bot &#9660;</h3>
+        <div id="chatbot-content" class="chatbot-content">
+            <input type="text" id="diseaseName" class="diseaseName" placeholder="Enter your symptoms or disease">
+            <button id="suggest-btn" onclick="getTreatment()" class="suggest-btn">Get Suggestions</button>
+            <div id="suggestions" class="suggestions"></div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <header class="header">
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="./images/dagad.jpg" alt="Profile Image">
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name">Pranav Sai</h1>
+                    <p class="profile-id">UID: 9864583</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="card policies-card">
+            <div class="card-header">
+                <h2 class="card-title">Available Policies</h2>
+                <div class="policies-icon">
+                    <img src="placeholder.svg" alt="Policies Icon">
+                </div>
+            </div>
+            <div class="card-content">
+                <p class="card-text">You have <span class="highlight">3 active policies</span></p>
+                <a href="secondpage.html" class="view-policies-btn">View all policies &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card dashboard-card">
+            <div class="card-header">
+                <h2 class="card-title">Medical Reports</h2>
+            </div>
+            <div class="card-content">
+                <table class="dashboard-table" id="reportTable" border="2">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Facility Name</th>
+                            <th>Report</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody id="reportTableBody">
+                        <!-- Dynamic content -->
+                    </tbody>
+                </table>
+                <div id="pdfModal" class="modal">
+                    <div class="modal-content">
+                        <button class="close-btn" id="closePdfModalBtn">&times;</button>
+                        <h2>View Report</h2>
+                        <iframe id="pdfViewer" style="width: 100%; height: 80vh;" src=""></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Toggle sliding menu
+        function toggleMenu() {
+            const slidingMenu = document.querySelector('.sliding-menu');
+            slidingMenu.classList.toggle('active'); // Toggle the 'active' class to slide the menu
+        }
+
+        // Chatbot toggle functionality
+        function toggleChatbot() {
+            const chatbotContent = document.getElementById('chatbot-content');
+            const toggleButton = document.getElementById('chatbot-toggle');
+
+            if (chatbotContent.style.display === "none" || chatbotContent.style.display === "") {
+                chatbotContent.style.display = "block";
+                toggleButton.innerHTML = "Medicine Suggestion Bot &#9650;"; // Collapse icon
+            } else {
+                chatbotContent.style.display = "none";
+                toggleButton.innerHTML = "Medicine Suggestion Bot &#9660;"; // Expand icon
+            }
+        }
+
+        // Chatbot functionality to fetch treatment suggestions
+        function getTreatment() {
+            const diseaseName = document.getElementById('diseaseName').value;
+
+            if (diseaseName.trim() === '') {
+                alert("Please enter a disease name.");
+                return;
+            }
+
+            fetch(`http://127.0.0.1:5000/get_treatment?disease_name=${encodeURIComponent(diseaseName)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const treatmentDisplay = document.getElementById("suggestions");
+
+                    if (data.treatment) {
+                        treatmentDisplay.innerHTML = `<h3>Treatment for ${diseaseName}:</h3><p>${data.treatment}</p>`;
+                    } else {
+                        treatmentDisplay.innerHTML = `<p>${data.error}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching treatment:', error);
+                    alert("An error occurred. Please try again.");
+                });
+        }
+    </script>
+</body>
+</html>
